@@ -1,10 +1,11 @@
 # Copyright Doofenshmirtz Evil Incorporated 2025
 
-from pathlib import Path
+from utils.get_file import get_input
 from day_1.common import INITIAL_POSITION, DIAL_NOTCHES
 
 
 def parse_line(current_position, clicks):
+    # Turning the dial in a direction is identical to turning it in the other direction but with reverse numbers
     if clicks < 0:
         temp_position = (100 - current_position) % 100
         temp_position -= clicks
@@ -30,13 +31,11 @@ def DOOR_PASSWORD_CRACK_INATOR_17_ULTRA_PRO_MAX(secret_document: list[str]):
 
 
 def main():
-    with Path("inputs/day_1/input").open("r") as file:
-        secret_document = file.readlines()
-        your_precious_password = DOOR_PASSWORD_CRACK_INATOR_17_ULTRA_PRO_MAX(
-            secret_document
-        )
-
-        print(your_precious_password)
+    secret_document = get_input(1)
+    your_precious_password = DOOR_PASSWORD_CRACK_INATOR_17_ULTRA_PRO_MAX(
+        secret_document
+    )
+    print(your_precious_password)
 
 
 if __name__ == "__main__":
