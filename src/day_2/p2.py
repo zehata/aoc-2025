@@ -22,7 +22,9 @@ import time
 
 @cache
 def get_range_to_check(no_of_digits) -> tuple[int, int]:
-    return (10 ** (no_of_digits - 1), 10**no_of_digits - 1)
+    min = 10 ** (no_of_digits - 1)
+    max = min * 10 - 1
+    return (min, max)
 
 
 @cache
@@ -81,9 +83,9 @@ def get_divisors(number: int) -> set[int]:
 
 
 def repeat_number(number, no_of_digits, repeats):
-    total = 0
-    for i in range(repeats):
-        total += number * (10**no_of_digits) ** i
+    total = number
+    for i in range(1, repeats):
+        total += number * (10 ** (no_of_digits * i))
     return total
 
 
@@ -130,9 +132,11 @@ def INVALID_PRODUCT_ID_SUM_INATOR_17_PRO_MAX(input: str):
 
 def main():
     line = get_input(2)[0]
+    total = 0
     start = time.perf_counter_ns()
-    total = INVALID_PRODUCT_ID_SUM_INATOR_17_PRO_MAX(line)
-    print(time.perf_counter_ns() - start)  # 2E6 ns -> 2 ms (!)
+    for i in range(1000):
+        total = INVALID_PRODUCT_ID_SUM_INATOR_17_PRO_MAX(line)
+    print((time.perf_counter_ns() - start) / 1e9)  # 0.632 ms(!)
     print(total)
 
 
