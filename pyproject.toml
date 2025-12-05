@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "intervaltree>=3.1.0",
     "numpy>=2.3.5",
     "polars>=1.35.2",
     "polars-ds>=0.10.3",
